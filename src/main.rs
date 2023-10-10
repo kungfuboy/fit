@@ -3,6 +3,9 @@ use std::io::{self, prelude::*, BufReader};
 
 use clap::Parser;
 
+mod lexer;
+use lexer::Token;
+
 /// Simple program to greet a person
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
@@ -24,6 +27,25 @@ fn main() -> io::Result<()> {
     for line in reader.lines() {
         println!("{}", line?);
     }
+
+    let mut lexer = lexer::Lexer::new("1+2*3-4/5");
+    let tokens = lexer.tokenize();
+    // println!("{:#?}", tokens);
+
+    assert_eq!(
+        tokens,
+        vec![
+            Token::Number(1),
+            Token::Plus,
+            Token::Number(2),
+            Token::Multiply,
+            Token::Number(3),
+            Token::Minus,
+            Token::Number(4),
+            Token::Divide,
+            Token::Number(5)
+        ]
+    );
 
     Ok(())
 }
