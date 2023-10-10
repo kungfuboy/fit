@@ -1,0 +1,6 @@
+
+@comment = '//' + LINE_END
+
+@comment = '/*' + TEXT_BLOCK + '/*'
+
+@function = func + IDENTIFIER + ( + IDENTIFIER + ) + { + }
