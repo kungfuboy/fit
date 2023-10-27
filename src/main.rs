@@ -28,9 +28,9 @@ fn main() -> io::Result<()> {
         println!("{}", line?);
     }
 
-    let mut lexer = lexer::Lexer::new("1+2*3-4/5");
+    let mut lexer = lexer::Lexer::new("1 + 2     *3-4/5");
     let tokens = lexer.tokenize();
-    // println!("{:#?}", tokens);
+    println!("{:#?}", tokens);
 
     assert_eq!(
         tokens,
